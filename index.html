@@ -144,6 +144,58 @@
     </div>
 </nav>
 
+
+
+<!-- Toggle Button -->
+<button id="sidebarToggle" onclick="toggleSidebar()" class="fixed left-4 top-1/2 -translate-y-1/2 z-50 w-10 h-10 bg-surface-glass backdrop-blur-xl border border-border-subtle rounded-full flex items-center justify-center shadow-lg hover:border-arc-blue transition-all text-on-surface-variant" style="transform:translateY(-50%);">
+    <span id="toggleIcon" class="material-symbols-outlined" style="font-size:18px;">menu</span>
+</button>
+
+<!-- SideNavBar -->
+<aside id="sidebar" style="display:none; position:fixed; left:60px; top:50%; transform:translateY(-50%); z-index:40;" class="rounded-lg w-56 bg-surface-glass backdrop-blur-2xl border border-border-subtle shadow-2xl shadow-black/50 flex-col py-6 px-3 gap-4">
+    <div class="flex items-center gap-3 px-1 mb-2">
+        <div class="w-10 h-10 rounded-full overflow-hidden flex-shrink-0 bg-arc-blue/20 border border-arc-blue/30 flex items-center justify-center cursor-pointer" onclick="document.getElementById('photoInput').click()" title="Klik untuk ganti foto">
+            <img id="sidebarAvatarImg" src="fajar.png" alt="Fajar" class="w-full h-full object-cover rounded-full" onerror="this.style.display='none'; document.getElementById('sidebarAvatarIcon').style.display='inline-block'"/>
+            <span class="material-symbols-outlined text-arc-blue" style="font-size:22px; display:none;" id="sidebarAvatarIcon">person</span>
+        </div>
+        <div>
+            <div class="text-sm font-bold text-on-surface">Fajar Angga M.</div>
+            <div class="text-xs text-on-surface-variant font-mono">IT Support</div>
+        </div>
+    </div>
+    <input type="file" id="photoInput" accept="image/*" class="hidden" onchange="handlePhotoChange(event)"/>
+    <div class="flex flex-col gap-1">
+        <a class="flex items-center gap-3 p-2.5 bg-primary-container text-on-primary-container rounded-DEFAULT transition-all hover:translate-x-1" href="#hero" onclick="closeSidebar()">
+            <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1; font-size:18px;">person</span>
+            <span class="font-label-mono text-sm">Bio</span>
+        </a>
+        <a class="flex items-center gap-3 p-2.5 text-on-surface-variant hover:bg-surface-variant rounded-DEFAULT transition-all hover:translate-x-1" href="#experience" onclick="closeSidebar()">
+            <span class="material-symbols-outlined" style="font-size:18px;">timeline</span>
+            <span class="font-label-mono text-sm">Pengalaman</span>
+        </a>
+        <a class="flex items-center gap-3 p-2.5 text-on-surface-variant hover:bg-surface-variant rounded-DEFAULT transition-all hover:translate-x-1" href="#skills" onclick="closeSidebar()">
+            <span class="material-symbols-outlined" style="font-size:18px;">bolt</span>
+            <span class="font-label-mono text-sm">Kemampuan</span>
+        </a>
+        <a class="flex items-center gap-3 p-2.5 text-on-surface-variant hover:bg-surface-variant rounded-DEFAULT transition-all hover:translate-x-1" href="#projects" onclick="closeSidebar()">
+            <span class="material-symbols-outlined" style="font-size:18px;">folder_special</span>
+            <span class="font-label-mono text-sm">Proyek</span>
+        </a>
+        <a class="flex items-center gap-3 p-2.5 text-on-surface-variant hover:bg-surface-variant rounded-DEFAULT transition-all hover:translate-x-1" href="mailto:ellofajar23@gmail.com">
+            <span class="material-symbols-outlined" style="font-size:18px;">mail</span>
+            <span class="font-label-mono text-sm">Kontak</span>
+        </a>
+    </div>
+    <div class="mt-3 px-1 space-y-2">
+        <a href="https://www.linkedin.com/in/fajar-maulana-8528662a6/" target="_blank">
+            <button class="w-full bg-surface-variant text-on-surface py-2 rounded-full font-label-mono text-xs border border-border-subtle hover:bg-surface-charcoal transition-all">LinkedIn →</button>
+        </a>
+        <button onclick="document.getElementById('photoInput').click()" class="w-full bg-arc-blue/10 text-arc-blue py-2 rounded-full font-label-mono text-xs border border-arc-blue/20 hover:bg-arc-blue/20 transition-all">
+            📷 Ganti Foto
+        </button>
+    </div>
+</aside>
+
 <main class="pt-32 pb-section-gap px-container-margin-mobile md:px-container-margin-desktop max-w-7xl mx-auto space-y-section-gap">
 
     <!-- Hero Section -->
@@ -154,7 +206,7 @@
                 <span class="font-label-mono text-label-sm text-on-surface-variant uppercase tracking-widest">IT Support · Yogyakarta</span>
             </div>
             <h1 class="font-display-lg text-display-lg text-on-surface leading-tight">
-                Data-Driven.<br/><span class="text-arc-blue">System</span>
+                Data-Driven.<br/><span class="text-arc-blue">System</span>-Ready.<br/>Always On.
             </h1>
             <p class="font-body-lg text-body-lg text-on-surface-variant max-w-xl">
                 Saya <strong class="text-on-surface">Fajar Angga Maulana</strong>, lulusan Sistem Informasi AMIKOM Yogyakarta dengan IPK 3.93. Berpengalaman di IT Support, administrasi data, dan pengembangan sistem berbasis web.
@@ -177,8 +229,9 @@
             <div class="aspect-square rounded-xl overflow-hidden glass-card ambient-bloom flex items-center justify-center bg-gradient-to-br from-arc-blue/10 to-transparent">
                 <!-- Avatar placeholder dengan inisial -->
                 <div class="flex flex-col items-center gap-4">
-                    <div id="heroAvatar" class="w-40 h-40 rounded-full bg-arc-blue/20 border-2 border-arc-blue/40 flex items-center justify-center cursor-pointer hover:border-arc-blue transition-colors" onclick="document.getElementById('photoInput').click()" title="Klik untuk ganti foto">
-                        <span class="text-6xl font-bold text-arc-blue">FA</span>
+                    <div id="heroAvatar" class="w-40 h-40 rounded-full bg-arc-blue/20 border-2 border-arc-blue/40 overflow-hidden flex items-center justify-center cursor-pointer hover:border-arc-blue transition-colors" onclick="document.getElementById('photoInput').click()" title="Klik untuk ganti foto">
+                        <img src="fajar.png" alt="Fajar Angga Maulana" class="w-full h-full object-cover rounded-full" onerror="this.style.display='none'; this.nextElementSibling.style.display='block'"/>
+                        <span class="text-6xl font-bold text-arc-blue" style="display:none;">FA</span>
                     </div>
                     <div class="text-center">
                         <div class="text-xl font-bold text-on-surface">Fajar Angga Maulana</div>
