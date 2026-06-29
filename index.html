@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html class="dark" lang="id">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Portfolio | Fajar Angga Maulana</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Geist:wght@400;500;600&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<style>
+    .material-symbols-outlined {
+        font-variation-settings: 'FILL' 0, 'wght' 200, 'GRAD' 0, 'opsz' 24;
+        font-size: 20px;
+    }
+    .glass-card {
+        background: rgba(255, 255, 255, 0.03);
+        backdrop-filter: blur(20px);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .glass-card:hover {
+        border-color: rgba(255, 255, 255, 0.2);
+        background: rgba(255, 255, 255, 0.05);
+        transform: translateY(-2px);
+    }
+    .ambient-bloom {
+        box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+    }
+    .mesh-gradient {
+        background-image: 
+            radial-gradient(at 0% 0%, rgba(0, 122, 255, 0.1) 0px, transparent 50%),
+            radial-gradient(at 100% 0%, rgba(0, 122, 255, 0.05) 0px, transparent 50%);
+    }
+    body {
+        background-color: #0C0C0C;
+        color: #e5e2e1;
+        overflow-x: hidden;
+    }
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: #0C0C0C; }
+    ::-webkit-scrollbar-thumb { background: #353534; border-radius: 10px; }
+
+    .timeline-dot {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background: #007AFF;
+        flex-shrink: 0;
+        margin-top: 6px;
+        box-shadow: 0 0 8px rgba(0,122,255,0.6);
+    }
+    .timeline-line {
+        width: 1px;
+        background: linear-gradient(to bottom, #007AFF44, transparent);
+        margin-left: 4px;
+        flex: 1;
+        min-height: 20px;
+    }
+</style>
+<script id="tailwind-config">
+    tailwind.config = {
+        darkMode: "class",
+        theme: {
+            extend: {
+                colors: {
+                    "surface-glass": "rgba(255, 255, 255, 0.03)",
+                    "on-surface": "#e5e2e1",
+                    "surface-charcoal": "#121212",
+                    "inverse-surface": "#e5e2e1",
+                    "outline-variant": "#454652",
+                    "secondary-container": "#4b8eff",
+                    "on-background": "#e5e2e1",
+                    "on-surface-variant": "#c6c5d5",
+                    "outline": "#908f9e",
+                    "surface-bright": "#3a3939",
+                    "surface-variant": "#353534",
+                    "surface-tint": "#007AFF",
+                    "primary": "#007AFF",
+                    "surface-container-highest": "#353534",
+                    "surface-container-high": "#2a2a2a",
+                    "background": "#131313",
+                    "surface": "#131313",
+                    "surface-container": "#201f1f",
+                    "border-subtle": "rgba(255, 255, 255, 0.08)",
+                    "on-primary": "#FFFFFF",
+                    "surface-dim": "#131313",
+                    "arc-blue": "#007AFF",
+                    "on-primary-container": "#FFFFFF",
+                    "primary-container": "#007AFF",
+                    "surface-container-lowest": "#0e0e0e",
+                    "surface-container-low": "#1c1b1b",
+                },
+                borderRadius: {
+                    "DEFAULT": "1rem",
+                    "lg": "2rem",
+                    "xl": "3rem",
+                    "full": "9999px"
+                },
+                spacing: {
+                    "gutter": "24px",
+                    "container-margin-desktop": "48px",
+                    "container-margin-mobile": "20px",
+                    "section-gap": "80px",
+                    "unit": "8px"
+                },
+                fontFamily: {
+                    "headline-xl": ["Inter"],
+                    "body-md": ["Inter"],
+                    "display-lg": ["Inter"],
+                    "body-lg": ["Inter"],
+                    "label-sm": ["Inter"],
+                    "headline-lg": ["Inter"],
+                    "label-mono": ["Geist"]
+                },
+                fontSize: {
+                    "headline-xl": ["40px", {"lineHeight": "1.2", "letterSpacing": "-0.03em", "fontWeight": "600"}],
+                    "body-md": ["15px", {"lineHeight": "1.5", "letterSpacing": "0em", "fontWeight": "400"}],
+                    "headline-lg-mobile": ["24px", {"lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "600"}],
+                    "display-lg": ["64px", {"lineHeight": "1.1", "letterSpacing": "-0.04em", "fontWeight": "700"}],
+                    "body-lg": ["18px", {"lineHeight": "1.6", "letterSpacing": "0em", "fontWeight": "400"}],
+                    "label-sm": ["12px", {"lineHeight": "1", "letterSpacing": "0.02em", "fontWeight": "500"}],
+                    "headline-lg": ["32px", {"lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "600"}],
+                    "label-mono": ["13px", {"lineHeight": "1", "letterSpacing": "0.05em", "fontWeight": "500"}]
+                }
+            }
+        }
+    }
+</script>
+</head>
+<body class="mesh-gradient min-h-screen">
+
+<!-- TopNavBar -->
+<nav class="fixed top-0 w-full z-50 bg-surface-glass backdrop-blur-xl border-b border-border-subtle flex justify-between items-center px-container-margin-desktop py-4">
+    <div class="font-headline-lg text-headline-lg font-bold text-on-surface tracking-tighter">Fajar.dev</div>
+    <div class="hidden md:flex gap-8 items-center">
+        <a class="font-body-md text-body-md text-arc-blue font-bold border-b-2 border-arc-blue pb-1" href="#experience">Pengalaman</a>
+        <a class="font-body-md text-body-md text-on-surface-variant hover:text-on-surface transition-colors" href="#skills">Kemampuan</a>
+        <a class="font-body-md text-body-md text-on-surface-variant hover:text-on-surface transition-colors" href="#education">Pendidikan</a>
+        <a class="font-body-md text-body-md text-on-surface-variant hover:text-on-surface transition-colors" href="#projects">Proyek</a>
+    </div>
+    <div class="flex items-center gap-4">
+        <a href="mailto:ellofajar23@gmail.com">
+            <button class="bg-arc-blue text-white px-6 py-2.5 rounded-full font-label-mono text-label-mono font-medium shadow-lg hover:scale-105 active:scale-95 transition-all border-t-[0.5px] border-white/20">Hubungi Saya</button>
+        </a>
+    </div>
+</nav>
+
+<!-- SideNavBar -->
+<aside class="fixed left-4 top-1/2 -translate-y-1/2 rounded-lg h-[520px] w-16 hover:w-56 transition-all duration-500 overflow-hidden bg-surface-glass backdrop-blur-2xl border border-border-subtle shadow-2xl shadow-black/50 z-40 group hidden xl:flex flex-col py-8 px-3 gap-6">
+    <div class="flex items-center gap-4 px-1">
+        <div class="w-10 h-10 rounded-full overflow-hidden flex-shrink-0 bg-arc-blue/20 border border-arc-blue/30 flex items-center justify-center">
+            <span class="material-symbols-outlined text-arc-blue" style="font-size:22px;">person</span>
+        </div>
+        <div class="opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap">
+            <div class="text-sm font-bold text-on-surface">Fajar Angga M.</div>
+            <div class="text-xs text-on-surface-variant font-mono">IT Support</div>
+        </div>
+    </div>
+    <div class="flex flex-col gap-2 mt-4">
+        <a class="flex items-center gap-4 p-3 bg-primary-container text-on-primary-container rounded-DEFAULT transition-all group-hover:translate-x-1" href="#hero">
+            <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">person</span>
+            <span class="font-label-mono text-label-mono opacity-0 group-hover:opacity-100 transition-opacity">Bio</span>
+        </a>
+        <a class="flex items-center gap-4 p-3 text-on-surface-variant hover:bg-surface-variant rounded-DEFAULT transition-all group-hover:translate-x-1" href="#experience">
+            <span class="material-symbols-outlined">timeline</span>
+            <span class="font-label-mono text-label-mono opacity-0 group-hover:opacity-100 transition-opacity">Pengalaman</span>
+        </a>
+        <a class="flex items-center gap-4 p-3 text-on-surface-variant hover:bg-surface-variant rounded-DEFAULT transition-all group-hover:translate-x-1" href="#skills">
+            <span class="material-symbols-outlined">bolt</span>
+            <span class="font-label-mono text-label-mono opacity-0 group-hover:opacity-100 transition-opacity">Kemampuan</span>
+        </a>
+        <a class="flex items-center gap-4 p-3 text-on-surface-variant hover:bg-surface-variant rounded-DEFAULT transition-all group-hover:translate-x-1" href="#projects">
+            <span class="material-symbols-outlined">folder_special</span>
+            <span class="font-label-mono text-label-mono opacity-0 group-hover:opacity-100 transition-opacity">Proyek</span>
+        </a>
+        <a class="flex items-center gap-4 p-3 text-on-surface-variant hover:bg-surface-variant rounded-DEFAULT transition-all group-hover:translate-x-1" href="mailto:ellofajar23@gmail.com">
+            <span class="material-symbols-outlined">mail</span>
+            <span class="font-label-mono text-label-mono opacity-0 group-hover:opacity-100 transition-opacity">Kontak</span>
+        </a>
+    </div>
+    <div class="mt-auto px-1 opacity-0 group-hover:opacity-100 transition-opacity">
+        <a href="https://www.linkedin.com/in/fajar-maulana-8528662a6/" target="_blank">
+            <button class="w-full bg-surface-variant text-on-surface py-2.5 rounded-full font-label-mono text-label-sm border border-border-subtle hover:bg-surface-charcoal transition-all text-xs">LinkedIn →</button>
+        </a>
+    </div>
+</aside>
+
+<main class="pt-32 pb-section-gap px-container-margin-mobile md:px-container-margin-desktop max-w-7xl mx-auto space-y-section-gap">
+
+    <!-- Hero Section -->
+    <section id="hero" class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+        <div class="lg:col-span-7 space-y-6">
+            <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-surface-glass border border-border-subtle">
+                <span class="w-2 h-2 rounded-full bg-arc-blue animate-pulse"></span>
+                <span class="font-label-mono text-label-sm text-on-surface-variant uppercase tracking-widest">IT Support · Yogyakarta</span>
+            </div>
+            <h1 class="font-display-lg text-display-lg text-on-surface leading-tight">
+                Data-Driven.<br/><span class="text-arc-blue">System</span>-Ready.<br/>Always On.
+            </h1>
+            <p class="font-body-lg text-body-lg text-on-surface-variant max-w-xl">
+                Saya <strong class="text-on-surface">Fajar Angga Maulana</strong>, lulusan Sistem Informasi AMIKOM Yogyakarta dengan IPK 3.93. Berpengalaman di IT Support, administrasi data, dan pengembangan sistem berbasis web.
+            </p>
+            <div class="flex flex-wrap gap-3 text-label-sm font-label-mono text-on-surface-variant pt-1">
+                <span class="flex items-center gap-1.5"><span class="material-symbols-outlined text-arc-blue" style="font-size:16px;">call</span>+62 895-3339-21253</span>
+                <span class="flex items-center gap-1.5"><span class="material-symbols-outlined text-arc-blue" style="font-size:16px;">mail</span>ellofajar23@gmail.com</span>
+                <span class="flex items-center gap-1.5"><span class="material-symbols-outlined text-arc-blue" style="font-size:16px;">location_on</span>Sleman, Yogyakarta</span>
+            </div>
+            <div class="flex flex-wrap gap-4 pt-4">
+                <a href="mailto:ellofajar23@gmail.com">
+                    <button class="bg-arc-blue text-white px-8 py-4 rounded-full font-headline-lg-mobile font-semibold hover:opacity-90 transition-all active:scale-95 shadow-xl">Hubungi Saya</button>
+                </a>
+                <a href="https://www.linkedin.com/in/fajar-maulana-8528662a6/" target="_blank">
+                    <button class="glass-card px-8 py-4 rounded-full font-headline-lg-mobile font-semibold text-on-surface hover:bg-surface-charcoal/50 transition-all">LinkedIn →</button>
+                </a>
+            </div>
+        </div>
+        <div class="lg:col-span-5 relative">
+            <div class="aspect-square rounded-xl overflow-hidden glass-card ambient-bloom flex items-center justify-center bg-gradient-to-br from-arc-blue/10 to-transparent">
+                <!-- Avatar placeholder dengan inisial -->
+                <div class="flex flex-col items-center gap-4">
+                    <div class="w-40 h-40 rounded-full bg-arc-blue/20 border-2 border-arc-blue/40 flex items-center justify-center">
+                        <span class="text-6xl font-bold text-arc-blue">FA</span>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-xl font-bold text-on-surface">Fajar Angga Maulana</div>
+                        <div class="text-sm text-on-surface-variant font-mono mt-1">S1 Sistem Informasi · IPK 3.93</div>
+                    </div>
+                </div>
+            </div>
+            <!-- Stats badge -->
+            <div class="absolute -bottom-4 -left-4 glass-card rounded-lg px-5 py-4 flex flex-col items-center justify-center min-w-[90px]">
+                <span class="text-2xl font-bold text-arc-blue">3.93</span>
+                <span class="text-xs text-on-surface-variant font-mono mt-0.5">IPK</span>
+            </div>
+            <div class="absolute -top-4 -right-4 glass-card rounded-lg px-5 py-4 flex flex-col items-center justify-center">
+                <span class="text-2xl font-bold text-arc-blue">3+</span>
+                <span class="text-xs text-on-surface-variant font-mono mt-0.5">Pengalaman</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience + Skills Bento -->
+    <section id="experience" class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-gutter">
+
+        <!-- Work Experience -->
+        <div class="md:col-span-2 lg:col-span-2 glass-card p-gutter rounded-lg space-y-6">
+            <div class="flex justify-between items-center">
+                <h2 class="font-headline-lg text-headline-lg text-on-surface">Pengalaman</h2>
+                <span class="font-label-mono text-label-sm text-arc-blue">2022 — Sekarang</span>
+            </div>
+            <div class="space-y-8">
+
+                <!-- Nadiraa Fashion - CURRENT (Newest First) -->
+                <div class="flex gap-4 group">
+                    <div class="flex flex-col items-center">
+                        <div class="w-12 h-12 bg-arc-blue/10 rounded-lg border border-arc-blue/30 flex items-center justify-center flex-shrink-0 group-hover:border-arc-blue transition-colors">
+                            <span class="material-symbols-outlined text-arc-blue">computer</span>
+                        </div>
+                        <div class="timeline-line mt-2"></div>
+                    </div>
+                    <div class="space-y-1 pb-2">
+                        <div class="flex justify-between items-start gap-2 flex-wrap">
+                            <h3 class="font-body-lg font-bold text-on-surface">IT Support</h3>
+                            <div class="flex items-center gap-1.5">
+                                <span class="w-1.5 h-1.5 rounded-full bg-arc-blue animate-pulse"></span>
+                                <span class="font-label-mono text-label-sm text-arc-blue">Nov 2025 – Sekarang</span>
+                            </div>
+                        </div>
+                        <p class="font-label-mono text-label-sm text-arc-blue uppercase tracking-wider">Nadiraa Fashion · Yogyakarta</p>
+                        <ul class="font-body-md text-body-md text-on-surface-variant pt-2 space-y-1 list-none">
+                            <li class="flex items-start gap-2"><span class="text-arc-blue mt-1">▸</span>Maintenance jaringan, perangkat komputer, dan printer di seluruh cabang.</li>
+                            <li class="flex items-start gap-2"><span class="text-arc-blue mt-1">▸</span>Administrasi dan troubleshooting sistem POS berbasis Odoo 16.</li>
+                            <li class="flex items-start gap-2"><span class="text-arc-blue mt-1">▸</span>Pengelolaan database operasional dan laporan teknis harian.</li>
+                            <li class="flex items-start gap-2"><span class="text-arc-blue mt-1">▸</span>Koordinasi kebutuhan IT antar cabang (Yogyakarta & Banda Aceh).</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- JNE Admin -->
+                <div class="flex gap-4 group">
+                    <div class="flex flex-col items-center">
+                        <div class="w-12 h-12 bg-[#FFA000]/10 rounded-lg border border-border-subtle flex items-center justify-center flex-shrink-0 group-hover:border-[#FFA000] transition-colors">
+                            <span class="material-symbols-outlined text-[#FFA000]">local_shipping</span>
+                        </div>
+                        <div class="timeline-line mt-2" style="background: linear-gradient(to bottom, #FFA00044, transparent);"></div>
+                    </div>
+                    <div class="space-y-1 pb-2">
+                        <div class="flex justify-between items-start gap-2 flex-wrap">
+                            <h3 class="font-body-lg font-bold text-on-surface">Admin Staff</h3>
+                            <span class="font-label-mono text-label-sm text-on-surface-variant">Mar 2024 – Sep 2025</span>
+                        </div>
+                        <p class="font-label-mono text-label-sm text-[#FFA000] uppercase tracking-wider">JNE Sariharjo · Sleman, Yogyakarta</p>
+                        <ul class="font-body-md text-body-md text-on-surface-variant pt-2 space-y-1">
+                            <li class="flex items-start gap-2"><span class="text-[#FFA000] mt-1">▸</span>Rekapitulasi data hutang bulanan pelanggan & validasi laporan.</li>
+                            <li class="flex items-start gap-2"><span class="text-[#FFA000] mt-1">▸</span>Input data paket ke sistem operasional JNE.</li>
+                            <li class="flex items-start gap-2"><span class="text-[#FFA000] mt-1">▸</span>Pelayanan pelanggan dan penanganan komplain pengiriman.</li>
+                            <li class="flex items-start gap-2"><span class="text-[#FFA000] mt-1">▸</span>Koordinasi dengan Customer Service cabang tujuan.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Asisten Praktikum -->
+                <div class="flex gap-4 group">
+                    <div class="flex flex-col items-center">
+                        <div class="w-12 h-12 bg-white/5 rounded-lg border border-border-subtle flex items-center justify-center flex-shrink-0 group-hover:border-white/30 transition-colors">
+                            <span class="material-symbols-outlined text-on-surface-variant">school</span>
+                        </div>
+                    </div>
+                    <div class="space-y-1">
+                        <div class="flex justify-between items-start gap-2 flex-wrap">
+                            <h3 class="font-body-lg font-bold text-on-surface">Asisten Praktikum</h3>
+                            <span class="font-label-mono text-label-sm text-on-surface-variant">2022/2023</span>
+                        </div>
+                        <p class="font-label-mono text-label-sm text-on-surface-variant uppercase tracking-wider">Universitas AMIKOM Yogyakarta</p>
+                        <div class="font-body-md text-body-md text-on-surface-variant pt-2 space-y-2">
+                            <div>
+                                <span class="text-on-surface font-semibold">Basis Data:</span> Bimbingan SQL, relasi, normalisasi & penyusunan modul MySQL.
+                            </div>
+                            <div>
+                                <span class="text-on-surface font-semibold">Pemrograman Web:</span> Pendampingan proyek HTML/CSS/JavaScript & evaluasi kode.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Skills Matrix -->
+        <div id="skills" class="md:col-span-1 lg:col-span-2 glass-card p-gutter rounded-lg space-y-6">
+            <h2 class="font-headline-lg text-headline-lg text-on-surface">Kemampuan</h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div class="p-4 rounded-DEFAULT bg-surface-charcoal/40 border border-border-subtle space-y-3">
+                    <div class="flex items-center gap-2 text-arc-blue">
+                        <span class="material-symbols-outlined">storage</span>
+                        <span class="font-label-mono text-label-sm">Database</span>
+                    </div>
+                    <h4 class="font-body-lg font-bold text-on-surface">SQL & MySQL</h4>
+                    <div class="w-full bg-surface-variant h-1 rounded-full overflow-hidden">
+                        <div class="bg-arc-blue h-full w-[88%]"></div>
+                    </div>
+                </div>
+                <div class="p-4 rounded-DEFAULT bg-surface-charcoal/40 border border-border-subtle space-y-3">
+                    <div class="flex items-center gap-2 text-arc-blue">
+                        <span class="material-symbols-outlined">table_chart</span>
+                        <span class="font-label-mono text-label-sm">Spreadsheet</span>
+                    </div>
+                    <h4 class="font-body-lg font-bold text-on-surface">Microsoft Excel</h4>
+                    <div class="w-full bg-surface-variant h-1 rounded-full overflow-hidden">
+                        <div class="bg-arc-blue h-full w-[92%]"></div>
+                    </div>
+                </div>
+                <div class="p-4 rounded-DEFAULT bg-surface-charcoal/40 border border-border-subtle space-y-3">
+                    <div class="flex items-center gap-2 text-arc-blue">
+                        <span class="material-symbols-outlined">code_blocks</span>
+                        <span class="font-label-mono text-label-sm">Web Dev</span>
+                    </div>
+                    <h4 class="font-body-lg font-bold text-on-surface">HTML / JS / CSS</h4>
+                    <div class="w-full bg-surface-variant h-1 rounded-full overflow-hidden">
+                        <div class="bg-arc-blue h-full w-[80%]"></div>
+                    </div>
+                </div>
+                <div class="p-4 rounded-DEFAULT bg-surface-charcoal/40 border border-border-subtle space-y-3">
+                    <div class="flex items-center gap-2 text-arc-blue">
+                        <span class="material-symbols-outlined">support_agent</span>
+                        <span class="font-label-mono text-label-sm">IT Support</span>
+                    </div>
+                    <h4 class="font-body-lg font-bold text-on-surface">Help Desk & Ops</h4>
+                    <div class="w-full bg-surface-variant h-1 rounded-full overflow-hidden">
+                        <div class="bg-arc-blue h-full w-[85%]"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="pt-2 flex flex-wrap gap-2">
+                <span class="px-3 py-1 rounded-full bg-arc-blue/10 text-arc-blue border border-arc-blue/20 font-label-mono text-label-sm">MySQL</span>
+                <span class="px-3 py-1 rounded-full bg-arc-blue/10 text-arc-blue border border-arc-blue/20 font-label-mono text-label-sm">Excel PivotTable</span>
+                <span class="px-3 py-1 rounded-full bg-arc-blue/10 text-arc-blue border border-arc-blue/20 font-label-mono text-label-sm">HTML & JS</span>
+                <span class="px-3 py-1 rounded-full bg-arc-blue/10 text-arc-blue border border-arc-blue/20 font-label-mono text-label-sm">Odoo 16</span>
+                <span class="px-3 py-1 rounded-full bg-arc-blue/10 text-arc-blue border border-arc-blue/20 font-label-mono text-label-sm">Visual Studio Code</span>
+                <span class="px-3 py-1 rounded-full bg-arc-blue/10 text-arc-blue border border-arc-blue/20 font-label-mono text-label-sm">Troubleshooting</span>
+                <span class="px-3 py-1 rounded-full bg-arc-blue/10 text-arc-blue border border-arc-blue/20 font-label-mono text-label-sm">VLOOKUP / IF</span>
+                <span class="px-3 py-1 rounded-full bg-arc-blue/10 text-arc-blue border border-arc-blue/20 font-label-mono text-label-sm">Data Entry (61 WPM)</span>
+                <span class="px-3 py-1 rounded-full bg-arc-blue/10 text-arc-blue border border-arc-blue/20 font-label-mono text-label-sm">Naive Bayes</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Projects -->
+    <section id="projects" class="space-y-8">
+        <div class="flex flex-col md:flex-row justify-between items-end gap-4">
+            <div class="space-y-2">
+                <h2 class="font-headline-lg text-headline-lg text-on-surface">Proyek Unggulan</h2>
+                <p class="font-body-md text-on-surface-variant">Karya akademik dan pengembangan sistem nyata.</p>
+            </div>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-gutter">
+
+            <!-- Project 1: Sistem Kasir -->
+            <div class="glass-card rounded-lg overflow-hidden group cursor-pointer">
+                <div class="p-8 space-y-4">
+                    <div class="w-12 h-12 bg-arc-blue/10 rounded-lg border border-arc-blue/20 flex items-center justify-center mb-4">
+                        <span class="material-symbols-outlined text-arc-blue">point_of_sale</span>
+                    </div>
+                    <div class="flex justify-between items-start">
+                        <div>
+                            <h3 class="font-body-lg font-bold text-on-surface">Sistem Kasir Web</h3>
+                            <p class="font-label-mono text-label-sm text-arc-blue">Full-Stack · PHP/MySQL</p>
+                        </div>
+                        <span class="material-symbols-outlined text-on-surface-variant group-hover:text-arc-blue transition-colors">north_east</span>
+                    </div>
+                    <p class="font-body-md text-on-surface-variant">Aplikasi kasir berbasis web dengan fitur pemesanan online, manajemen produk, dan laporan transaksi real-time.</p>
+                    <div class="flex flex-wrap gap-2 pt-2">
+                        <span class="px-2 py-0.5 rounded-full bg-surface-variant text-on-surface-variant font-label-mono text-label-sm">PHP</span>
+                        <span class="px-2 py-0.5 rounded-full bg-surface-variant text-on-surface-variant font-label-mono text-label-sm">MySQL</span>
+                        <span class="px-2 py-0.5 rounded-full bg-surface-variant text-on-surface-variant font-label-mono text-label-sm">JavaScript</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project 2: Klasifikasi Naive Bayes -->
+            <div class="glass-card rounded-lg overflow-hidden group cursor-pointer">
+                <div class="p-8 space-y-4">
+                    <div class="w-12 h-12 bg-arc-blue/10 rounded-lg border border-arc-blue/20 flex items-center justify-center mb-4">
+                        <span class="material-symbols-outlined text-arc-blue">psychology</span>
+                    </div>
+                    <div class="flex justify-between items-start">
+                        <div>
+                            <h3 class="font-body-lg font-bold text-on-surface">Klasifikasi Naive Bayes</h3>
+                            <p class="font-label-mono text-label-sm text-arc-blue">Machine Learning · Python</p>
+                        </div>
+                        <span class="material-symbols-outlined text-on-surface-variant group-hover:text-arc-blue transition-colors">north_east</span>
+                    </div>
+                    <p class="font-body-md text-on-surface-variant">Implementasi algoritma Naive Bayes untuk klasifikasi data, sebagai bagian dari tugas akhir akademik di AMIKOM.</p>
+                    <div class="flex flex-wrap gap-2 pt-2">
+                        <span class="px-2 py-0.5 rounded-full bg-surface-variant text-on-surface-variant font-label-mono text-label-sm">Python</span>
+                        <span class="px-2 py-0.5 rounded-full bg-surface-variant text-on-surface-variant font-label-mono text-label-sm">Data Mining</span>
+                        <span class="px-2 py-0.5 rounded-full bg-surface-variant text-on-surface-variant font-label-mono text-label-sm">Scikit-learn</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project 3: Modul Praktikum -->
+            <div class="glass-card rounded-lg overflow-hidden group cursor-pointer">
+                <div class="p-8 space-y-4">
+                    <div class="w-12 h-12 bg-arc-blue/10 rounded-lg border border-arc-blue/20 flex items-center justify-center mb-4">
+                        <span class="material-symbols-outlined text-arc-blue">menu_book</span>
+                    </div>
+                    <div class="flex justify-between items-start">
+                        <div>
+                            <h3 class="font-body-lg font-bold text-on-surface">Modul Praktikum MySQL</h3>
+                            <p class="font-label-mono text-label-sm text-arc-blue">Technical Writing · Akademik</p>
+                        </div>
+                        <span class="material-symbols-outlined text-on-surface-variant group-hover:text-arc-blue transition-colors">north_east</span>
+                    </div>
+                    <p class="font-body-md text-on-surface-variant">Penyusunan panduan dan modul praktikum Basis Data MySQL untuk mahasiswa S1, mencakup DDL, DML, dan normalisasi.</p>
+                    <div class="flex flex-wrap gap-2 pt-2">
+                        <span class="px-2 py-0.5 rounded-full bg-surface-variant text-on-surface-variant font-label-mono text-label-sm">MySQL</span>
+                        <span class="px-2 py-0.5 rounded-full bg-surface-variant text-on-surface-variant font-label-mono text-label-sm">SQL</span>
+                        <span class="px-2 py-0.5 rounded-full bg-surface-variant text-on-surface-variant font-label-mono text-label-sm">Dokumentasi</span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Education & Info -->
+    <section id="education" class="grid grid-cols-1 lg:grid-cols-3 gap-gutter">
+        <div class="lg:col-span-1 glass-card p-gutter rounded-lg space-y-6">
+            <h2 class="font-headline-lg text-headline-lg text-on-surface">Pendidikan</h2>
+            <div class="space-y-6">
+                <div class="space-y-1">
+                    <p class="font-label-mono text-label-sm text-arc-blue uppercase">2021 – 2025</p>
+                    <h4 class="font-body-lg font-bold text-on-surface">S1 Sistem Informasi</h4>
+                    <p class="font-body-md text-on-surface-variant">Universitas AMIKOM Yogyakarta</p>
+                    <div class="inline-flex items-center gap-2 mt-2 px-3 py-1 rounded-full bg-arc-blue/10 border border-arc-blue/20">
+                        <span class="material-symbols-outlined text-arc-blue" style="font-size:14px;">grade</span>
+                        <span class="font-label-mono text-label-sm text-arc-blue">IPK 3.93</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="lg:col-span-2 glass-card p-gutter rounded-lg space-y-6">
+            <h2 class="font-headline-lg text-headline-lg text-on-surface">Keahlian Tambahan</h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                <div class="flex items-start gap-4">
+                    <span class="material-symbols-outlined text-arc-blue" style="font-variation-settings: 'FILL' 1;">speed</span>
+                    <div class="space-y-1">
+                        <h4 class="font-body-md font-bold text-on-surface">Mengetik Cepat</h4>
+                        <p class="font-label-sm text-on-surface-variant">61 WPM · Microsoft Word</p>
+                    </div>
+                </div>
+                <div class="flex items-start gap-4">
+                    <span class="material-symbols-outlined text-arc-blue" style="font-variation-settings: 'FILL' 1;">support_agent</span>
+                    <div class="space-y-1">
+                        <h4 class="font-body-md font-bold text-on-surface">Customer Service</h4>
+                        <p class="font-label-sm text-on-surface-variant">Komunikasi & Problem Solving</p>
+                    </div>
+                </div>
+                <div class="flex items-start gap-4">
+                    <span class="material-symbols-outlined text-arc-blue" style="font-variation-settings: 'FILL' 1;">dataset</span>
+                    <div class="space-y-1">
+                        <h4 class="font-body-md font-bold text-on-surface">Data Entry & Rekap</h4>
+                        <p class="font-label-sm text-on-surface-variant">Validasi & Akurasi Laporan</p>
+                    </div>
+                </div>
+                <div class="flex items-start gap-4">
+                    <span class="material-symbols-outlined text-arc-blue" style="font-variation-settings: 'FILL' 1;">hub</span>
+                    <div class="space-y-1">
+                        <h4 class="font-body-md font-bold text-on-surface">IT Networking</h4>
+                        <p class="font-label-sm text-on-surface-variant">Maintenance & Koordinasi Multi-Cabang</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+</main>
+
+<!-- Footer -->
+<footer class="w-full py-section-gap border-t border-border-subtle bg-surface-container-lowest">
+    <div class="flex flex-col md:flex-row justify-between items-center px-container-margin-desktop max-w-7xl mx-auto gap-8">
+        <div class="space-y-2 text-center md:text-left">
+            <div class="font-headline-lg text-headline-lg text-on-surface font-bold tracking-tighter">Fajar Angga Maulana</div>
+            <p class="font-label-sm text-label-sm text-on-surface-variant">© 2025 · IT Support · Sistem Informasi AMIKOM · Yogyakarta</p>
+        </div>
+        <div class="flex gap-8">
+            <a class="font-label-sm text-label-sm text-on-surface-variant hover:text-arc-blue transition-colors hover:underline decoration-arc-blue underline-offset-4" href="https://www.linkedin.com/in/fajar-maulana-8528662a6/" target="_blank">LinkedIn</a>
+            <a class="font-label-sm text-label-sm text-on-surface-variant hover:text-arc-blue transition-colors hover:underline decoration-arc-blue underline-offset-4" href="mailto:ellofajar23@gmail.com">Email</a>
+        </div>
+        <button onclick="window.scrollTo({top:0,behavior:'smooth'})" class="bg-surface-glass border border-border-subtle text-on-surface-variant px-6 py-3 rounded-full font-label-mono text-label-sm hover:text-on-surface hover:border-on-surface transition-all">
+            Back to Top ↑
+        </button>
+    </div>
+</footer>
+
+<script>
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) {
+                target.scrollIntoView({ behavior: 'smooth' });
+            }
+        });
+    });
+
+    document.addEventListener('mousemove', (e) => {
+        const x = e.clientX / window.innerWidth;
+        const y = e.clientY / window.innerHeight;
+        document.body.style.backgroundPosition = `${x * 20}% ${y * 20}%`;
+    });
+</script>
+</body>
+</html>
